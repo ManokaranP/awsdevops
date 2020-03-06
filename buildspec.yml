@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      dotnet: 3.0
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+  build:
+    commands:
+      - echo Build started on `date`
+      - mkdir build-output
+      - cd SampleWebAPI
+      - dotnet publish SampleWebAPI.csproj -o build-output
+artifacts:
+  files:
+    - SampleWebAPI/build-output/**/*
+    - SampleWebAPI/build-output/wwwroot/**
+    - appspec.yml
